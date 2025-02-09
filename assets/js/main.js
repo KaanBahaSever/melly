@@ -57,5 +57,10 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+
+        if(window.scrollY === 0) {
+            setActiveTabandScroll(-1);
+            prevIndex = -1;
+        }
     });
 });
