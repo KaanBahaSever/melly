@@ -1,17 +1,54 @@
-function determineLocale() {
-    // All modern browsers support this. Should match what's used by localeCompare() etc.
+function getLanguage() {
     const intl = window.Intl;
     if (intl !== undefined) {
         return intl.NumberFormat().resolvedOptions().locale.slice(0, 2);
     }
 
-    // Fall back to ranked choice locales, which are configured in the browser but aren't necessarily
-    // what's used in functions like localeCompare().
     const languages = navigator.languages;
     if (languages !== undefined && languages.length > 0) {
         return languages[0];
     }
 
-    // Old standard.
     return navigator.language ?? "en";
 }
+
+async function loadTranslations(language) {
+    try {
+        const response = await fetch(`assets/js/locales/${language}.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load ${language} translations`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+async function initializeTranslations() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let language = urlParams.get('lang');
+
+    if (!language) {
+        language = getLanguage();
+    }
+    console.log(`Language set to: ${language}`);
+
+    const translations = await loadTranslations(language);
+    if (!translations) {
+        console.error(`Translations for language ${language} not found, falling back to 'en'`);
+        language = 'en';
+        translations = await loadTranslations(language);
+    }
+
+    const elements = document.querySelectorAll('[data-translator]');
+    for (const element of elements) {
+        const key = element.getAttribute('data-translator');
+        const translation = translations[key];
+        if (translation) {
+            element.textContent = translation;
+        }
+    }
+}
+
+window.addEventListener("load", initializeTranslations);
