@@ -38,6 +38,13 @@ function setActiveTabandScroll(index) {
 
 let prevIndex = -1;
 window.addEventListener('DOMContentLoaded', () => {
+    let link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+
+    link.href = 'assets/images/favicon-16x16.png';
+
+
     const tabs = document.querySelector('.tabs');
     document.addEventListener('scroll', function () {
         // Check if the tabs are sticky
@@ -58,7 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        if(window.scrollY === 0) {
+        if (window.scrollY === 0) {
             setActiveTabandScroll(-1);
             prevIndex = -1;
         }
