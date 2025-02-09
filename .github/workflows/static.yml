@@ -1,0 +1,23 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Upload to server
+      env:
+        SERVER_IP: ${{ secrets.SERVER_IP }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+      run: |
+        echo "Uploading files to server..."
+        rsync -avz --delete -e "sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no" ./ $USERNAME@$SERVER_IP:/home/mellycoffee/htdocs/mellycoffee.co/
