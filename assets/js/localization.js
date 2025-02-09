@@ -1,6 +1,20 @@
+function getLanguage() {
+    const intl = window.Intl;
+    if (intl !== undefined) {
+        return intl.NumberFormat().resolvedOptions().locale.slice(0, 2);
+    }
+
+    const languages = navigator.languages;
+    if (languages !== undefined && languages.length > 0) {
+        return languages[0];
+    }
+
+    return navigator.language ?? "en";
+}
+
 async function loadTranslations(language) {
     try {
-        const response = await fetch(`/path/to/locales/${language}.json`);
+        const response = await fetch(`assets/js/locales/${language}.json`);
         if (!response.ok) {
             throw new Error(`Failed to load ${language} translations`);
         }
@@ -18,6 +32,7 @@ async function initializeTranslations() {
     if (!language) {
         language = getLanguage();
     }
+    console.log(`Language set to: ${language}`);
 
     const translations = await loadTranslations(language);
     if (!translations) {
