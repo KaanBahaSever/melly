@@ -1,20 +1,11 @@
-let debounceTimer;
-
 function disableScroll() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-    window.onscroll = function () {
-        window.scrollTo(scrollLeft, scrollTop);
-    };
+    document.body.style.overflow = 'hidden';
 }
 
 function enableScroll() {
-    window.onscroll = null;
-}
-
-function sleep(time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
+    document.body.style.overflow = 'auto';
+    //Set to scroll to top
+    window.scrollTo(0, 0);
 }
 
 function hideLogo() {
@@ -26,72 +17,45 @@ function hideLogo() {
     enableScroll();
 }
 
-function updateTextboxState() {
-    const scrollTriggerPoint = 100;
-    const tabs = document.querySelector('.tabs');
-    if (!tabs) return;
+window.addEventListener('load', async () => {
+    disableScroll();
+    setTimeout(hideLogo, 2500);
+});
 
-    if (window.scrollY > scrollTriggerPoint) {
-        tabs.classList.add('fixed');
-    } else {
-        tabs.classList.remove('fixed');
-        setTimeout(() => {
-            document.querySelectorAll('.tab[href="#desserts"]')[0].scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-                inline: 'center'
-            });
-        }, 200);
+function setActiveTabandScroll(index) {
+    /* console.log(index); */
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+
+    if (index !== -1) {
+        const tab = document.querySelectorAll('.tab')[index];
+        tab.classList.add('active');
+        tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
 }
 
-window.addEventListener('load', async () => {
-    disableScroll();
-
-    await sleep(2500);
-    hideLogo();
-    updateTextboxState();
-
-    window.addEventListener('scroll', updateTextboxState);
-});
-
+let prevIndex = -1;
 window.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelector('.tabs');
-    if (tabs) {
-        tabs.classList.remove('fixed');
-    }
-});
-document.addEventListener('scroll', function() {
-    clearTimeout(debounceTimer);
+    document.addEventListener('scroll', function () {
+        // Check if the tabs are sticky
+        const stickyTop = parseInt(window.getComputedStyle(tabs).top);
+        const currentTop = tabs.getBoundingClientRect().top;
+        tabs.classList.toggle("is-sticky", currentTop === stickyTop);
+        // End of sticky check
 
-    debounceTimer = setTimeout(function() {
         const sections = document.querySelectorAll('.sub-menu');
-        const menuItems = document.querySelectorAll('.tab');
-        let currentIndex = -1;
-
         sections.forEach((section, index) => {
             const rect = section.getBoundingClientRect();
-            
-            if (rect.top - 100 <= 0 && rect.bottom - 100 >= 0) {
-                currentIndex = index;
-            }
-        });
 
-        menuItems.forEach((item, index) => {
-            if (index === currentIndex) {
-                if (!item.classList.contains('active')) {
-                    item.classList.add('active');
-                    item.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center',
-                        inline: 'center'
-                    });
-                }
-            } else {
-                if (item.classList.contains('active')) {
-                    item.classList.remove('active');
+            if (rect.top - 100 <= 0 && rect.bottom - 100 >= 0) {
+                if (prevIndex !== index) {
+                    setActiveTabandScroll(index);
+                    prevIndex = index;
                 }
             }
         });
-    }, 100);
+    });
 });
