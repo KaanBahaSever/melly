@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css?v=58">
+    <script src="main.js?v=64"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <div id="logo-intro" class="logo-intro-background">
+        <img class="logo-intro-img" src="logo.png">
+    </div>
+
+    <div class="menu_container">
+        <div class="menus">
+            <div>
+                <img class="menu-logo" src="logo-v3.svg">
+                <hr style="margin-top: 1rem;">
+            </div>
+
+            <div class="tabs" id="tabs">
+                <!-- Tabs will be dynamically generated here -->
+            </div>
+
+            <div class="menu" id="menu">
+                <!-- Menu items will be dynamically generated here -->
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch(`https://cheflika.com/api/v1/qrmenu/1`)
+                .then(response => response.json())
+                .then(data => {
+                    const tabsContainer = document.getElementById('tabs');
+                    const menuContainer = document.getElementById('menu');
+
+                    data.categories.forEach(category => {
+                        // Create tab
+                        const tab = document.createElement('a');
+                        tab.href = `#${category.id}`;
+                        tab.className = 'tab';
+                        tab.textContent = category.title;
+                        tabsContainer.appendChild(tab);
+
+                        // Create menu section
+                        const subMenu = document.createElement('div');
+                        subMenu.className = 'sub-menu';
+                        const header = document.createElement('h1');
+                        header.id = category.id;
+                        header.className = 'menu_header';
+                        header.textContent = category.title;
+                        subMenu.appendChild(header);
+
+                        const subItems = document.createElement('div');
+                        subItems.className = 'sub-items';
+
+                        category.items.forEach(item => {
+                            const subItem = document.createElement('div');
+                            subItem.className = 'sub-item';
+                            const itemName = document.createElement('p');
+                            itemName.className = 'item-name';
+                            itemName.textContent = item.title;
+                            subItem.appendChild(itemName);
+                            const itemPrice = document.createElement('p');
+                            itemPrice.className = 'item-price';
+                            itemPrice.textContent = item.price;
+                            subItem.appendChild(itemPrice);
+                            subItems.appendChild(subItem);
+                            if (item.detail) {
+                                const itemDetail = document.createElement('p');
+                                itemDetail.className = 'item-detail';
+                                itemDetail.textContent = item.detail;
+                                subItems.appendChild(itemDetail);
+                            }
+                            subItems.appendChild(document.createElement('hr'));
+                        });
+
+                        subMenu.appendChild(subItems);
+                        menuContainer.appendChild(subMenu);
+                    });
+                });
+        });
+    </script>
+</body>
+
+</html>
