@@ -174,3 +174,7 @@ a {
 .item-price{
     padding-left: 16px;
 }
+
+.sub-menu:last-child{
+    margin-bottom: 30rem;
+}
