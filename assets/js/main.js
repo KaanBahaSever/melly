@@ -1,11 +1,11 @@
 function disableScroll() {
+    window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';
 }
 
 function enableScroll() {
     document.body.style.overflow = 'auto';
     //Set to scroll to top
-    window.scrollTo(0, 0);
 }
 
 function hideLogo() {
@@ -38,15 +38,6 @@ function setActiveTabandScroll(index) {
         const tab = document.querySelectorAll('.tab')[0];
         tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
-}
-
-let previousValue = false;
-function isValueChanged(value) {
-    if (previousValue == value) {
-        return false;
-    }
-    previousValue = value;
-    return true;
 }
 
 function isSticky(element, triggerPoint) {
