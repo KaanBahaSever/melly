@@ -19,7 +19,7 @@ function hideLogo() {
 
 window.addEventListener('load', async () => {
     disableScroll();
-    setTimeout(hideLogo, 2500);
+    /* setTimeout(hideLogo, 2500); */
 });
 
 function setActiveTabandScroll(index) {
