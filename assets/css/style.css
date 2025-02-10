@@ -1,11 +1,10 @@
 html {
     background: #f8f8e152;
-    font-style: italic;
     scroll-behavior: smooth;
-    font-size: 24px;
 
+    font-size: 24px;
     font-family: serif;
-    scroll-behavior: smooth;
+    font-style: italic;
 }
 
 body {
