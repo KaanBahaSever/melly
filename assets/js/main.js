@@ -23,7 +23,6 @@ window.addEventListener('load', async () => {
 });
 
 function setActiveTabandScroll(index) {
-    /* console.log(index); */
     const tabs = document.querySelectorAll('.tab');
     tabs.forEach(tab => {
         tab.classList.remove('active');
@@ -41,7 +40,6 @@ function setActiveTabandScroll(index) {
 }
 
 function isSticky(element, triggerPoint) {
-    console.log(window.scrollY, triggerPoint);
     if (window.scrollY > triggerPoint) {
         element.classList.add('is-sticky');
     }
@@ -55,7 +53,7 @@ let prevIndex = -1;
 window.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelector('.tabs');
     const triggerPoint = tabs.getBoundingClientRect().top;
-    
+
     document.addEventListener('scroll', function () {
         isSticky(tabs, triggerPoint);
 
