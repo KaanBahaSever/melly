@@ -36,31 +36,53 @@ function setActiveTabandScroll(index) {
     }
 }
 
+let previousValue = false;
+function isValueChanged(value) {
+    if (previousValue == value) {
+        return false;
+    }
+    previousValue = value;
+    return true;
+}
+
+function isSticky(element) {
+    const stickyTop = parseInt(window.getComputedStyle(element).top);
+    const currentTop = element.getBoundingClientRect().top;
+
+
+    if (isValueChanged(currentTop == stickyTop)) {
+        element.classList.toggle('is-sticky');
+    }
+
+}
+
+let dobounceTimer;
 let prevIndex = -1;
 window.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelector('.tabs');
     document.addEventListener('scroll', function () {
-        // Check if the tabs are sticky
-        const stickyTop = parseInt(window.getComputedStyle(tabs).top);
-        const currentTop = tabs.getBoundingClientRect().top;
-        tabs.classList.toggle("is-sticky", currentTop === stickyTop);
-        // End of sticky check
+        clearTimeout(dobounceTimer);
+        isSticky(tabs);
 
-        const sections = document.querySelectorAll('.sub-menu');
-        sections.forEach((section, index) => {
-            const rect = section.getBoundingClientRect();
+        dobounceTimer = setTimeout(() => {
+            const sections = document.querySelectorAll('.sub-menu');
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
 
-            if (rect.top - 100 <= 0 && rect.bottom - 100 >= 0) {
-                if (prevIndex !== index) {
-                    setActiveTabandScroll(index);
-                    prevIndex = index;
+                if (rect.top - 100 <= 0 && rect.bottom - 100 >= 0) {
+                    if (prevIndex !== index) {
+                        setActiveTabandScroll(index);
+                        prevIndex = index;
+                    }
                 }
-            }
-        });
+            });
 
-        if (window.scrollY === 0) {
-            setActiveTabandScroll(-1);
-            prevIndex = -1;
-        }
+            if (window.scrollY === 0) {
+                setActiveTabandScroll(-1);
+                prevIndex = -1;
+            }
+
+
+        }, 500);
     });
 });
