@@ -34,6 +34,10 @@ function setActiveTabandScroll(index) {
         tab.classList.add('active');
         tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
+    else {
+        const tab = document.querySelectorAll('.tab')[0];
+        tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
 }
 
 let previousValue = false;
@@ -45,25 +49,25 @@ function isValueChanged(value) {
     return true;
 }
 
-function isSticky(element) {
-    const stickyTop = parseInt(window.getComputedStyle(element).top);
-    const currentTop = element.getBoundingClientRect().top;
+function isSticky(element, triggerPoint) {
 
-
-    if (isValueChanged(currentTop == stickyTop)) {
-        element.classList.toggle('is-sticky');
+    if (window.scrollY > triggerPoint) {
+        element.classList.add('is-sticky');
     }
-
+    else {
+        element.classList.remove('is-sticky');
+    }
 }
 
 let dobounceTimer;
 let prevIndex = -1;
 window.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelector('.tabs');
+    const triggerPoint = tabs.offsetTop;
     document.addEventListener('scroll', function () {
-        clearTimeout(dobounceTimer);
-        isSticky(tabs);
+        isSticky(tabs, triggerPoint);
 
+        clearTimeout(dobounceTimer);
         dobounceTimer = setTimeout(() => {
             const sections = document.querySelectorAll('.sub-menu');
             sections.forEach((section, index) => {
@@ -83,6 +87,7 @@ window.addEventListener('DOMContentLoaded', () => {
             }
 
 
-        }, 500);
+        }, 100);
+
     });
 });
