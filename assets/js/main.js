@@ -41,7 +41,8 @@ function setActiveTabandScroll(index) {
 }
 
 function isSticky(element, triggerPoint) {
-    if (window.scrollY > triggerPoint+105) {
+    console.log(window.scrollY, triggerPoint);
+    if (window.scrollY > triggerPoint) {
         element.classList.add('is-sticky');
     }
     else {
