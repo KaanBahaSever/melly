@@ -50,8 +50,7 @@ function isValueChanged(value) {
 }
 
 function isSticky(element, triggerPoint) {
-
-    if (window.scrollY > triggerPoint) {
+    if (window.scrollY > triggerPoint+105) {
         element.classList.add('is-sticky');
     }
     else {
