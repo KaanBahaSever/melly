@@ -42,9 +42,11 @@ function setActiveTabandScroll(index) {
 function isSticky(element, triggerPoint) {
     if (window.scrollY > triggerPoint) {
         element.classList.add('is-sticky');
+        document.body.style.paddingTop = (element.offsetHeight + 20) + 'px';
     }
     else {
         element.classList.remove('is-sticky');
+        document.body.style.paddingTop = 0;
     }
 }
 
