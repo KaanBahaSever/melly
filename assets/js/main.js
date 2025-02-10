@@ -54,7 +54,8 @@ let dobounceTimer;
 let prevIndex = -1;
 window.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelector('.tabs');
-    const triggerPoint = tabs.offsetTop;
+    const triggerPoint = tabs.getBoundingClientRect().top;
+    
     document.addEventListener('scroll', function () {
         isSticky(tabs, triggerPoint);
 
