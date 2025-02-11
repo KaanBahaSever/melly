@@ -52,7 +52,7 @@ window.addEventListener('load', async () => {
 
     const el = document.querySelector(".tabs")
     const observer = new IntersectionObserver(
-        ([e]) => e.target.classList.toggle("is-sticky", !e.isIntersecting),
+        ([e]) => e.target.classList.toggle("is-sticky", !e.isIntersecting && el.getBoundingClientRect().bottom < window.innerHeight),
         {
             threshold: [1],
             root: document,
