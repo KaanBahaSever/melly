@@ -39,7 +39,10 @@ function setActiveTabandScroll(index) {
     }
 }
 
-function isSticky(element, triggerPoint) {
+let triggerPoint = 0;
+
+function isSticky(element) {
+    console.log(window.scrollY, triggerPoint);
     if (window.scrollY > triggerPoint) {
         element.classList.add('is-sticky');
         document.body.style.paddingTop = (element.offsetHeight + 20) + 'px';
@@ -52,7 +55,6 @@ function isSticky(element, triggerPoint) {
 
 let dobounceTimer;
 let prevIndex = -1;
-let triggerPoint = 0;
 window.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelector('.tabs');
     triggerPoint = tabs.getBoundingClientRect().top;
