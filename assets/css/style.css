@@ -37,6 +37,7 @@ h1 {
     height: 100%;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -84,7 +85,7 @@ h1 {
 }
 
 .logo-intro-img {
-    width: 100%;
+    width: 90%;
     animation: taadaa 2s linear;
 }
 
@@ -138,7 +139,6 @@ h1 {
 
 .tabs::-webkit-scrollbar {
     display: none;
-    /* Safari and Chrome */
 }
 
 .tab.active {
@@ -184,10 +184,45 @@ a {
     margin-bottom: 30rem;
 }
 
-.sub-menu-image{
+.sub-menu-image {
     width: 100%;
 }
 
-.hero{
+.hero {
     text-align: center;
+}
+
+.language-selection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    width: 90%;
+    margin-top: 4rem;
+
+    p {
+        margin: 0;
+    }
+
+    animation: taadaa 2s linear;
+}
+
+.language {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    border-radius: 12px;
+    padding: 0.3rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.flag {
+    height: 36px;
+}
+
+.language:hover {
+    background-color: #0000001f;
+    cursor: pointer;
 }

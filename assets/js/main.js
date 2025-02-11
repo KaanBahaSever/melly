@@ -18,6 +18,12 @@ function hideLogo() {
     enableScroll();
 }
 
+
+window.addEventListener('load', async () => {
+    disableScroll();
+    setTimeout(hideLogo, 2500);
+});
+
 function setActiveTabandScroll(index) {
     const tabs = document.querySelectorAll('.tab');
     tabs.forEach(tab => {
