@@ -52,9 +52,10 @@ function isSticky(element, triggerPoint) {
 
 let dobounceTimer;
 let prevIndex = -1;
+let triggerPoint = 0;
 window.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelector('.tabs');
-    const triggerPoint = tabs.getBoundingClientRect().top;
+    triggerPoint = tabs.getBoundingClientRect().top;
 
     document.addEventListener('scroll', function () {
         isSticky(tabs, triggerPoint);
@@ -83,3 +84,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     });
 });
+
+window.onresize = () => {
+    const tabs = document.querySelector('.tabs');
+    if (tabs) triggerPoint = tabs.getBoundingClientRect().top;
+};
