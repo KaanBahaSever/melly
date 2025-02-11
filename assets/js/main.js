@@ -60,7 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
     triggerPoint = tabs.getBoundingClientRect().top;
 
     document.addEventListener('scroll', function () {
-        isSticky(tabs, triggerPoint);
+        isSticky();
 
         clearTimeout(dobounceTimer);
         dobounceTimer = setTimeout(() => {
