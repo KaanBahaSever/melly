@@ -40,9 +40,7 @@ function setActiveTabandScroll(index) {
 }
 
 let triggerPoint = 0;
-
 function isSticky(element) {
-    console.log(window.scrollY, triggerPoint);
     if (window.scrollY > triggerPoint) {
         element.classList.add('is-sticky');
         document.body.style.paddingTop = (element.offsetHeight + 20) + 'px';
@@ -89,8 +87,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 window.onresize = () => {
     const tabs = document.querySelector('.tabs');
-    //window.scrollY = 0;
     const top = tabs.getBoundingClientRect().top;
-    console.log(top);
-    //if (tabs && top > 10) triggerPoint = top;
+    console.log("x = "+tabs.getBoundingClientRect().x, "y = "+tabs.getBoundingClientRect().y);  
+    if (tabs && top > 10) triggerPoint = top;
 };
