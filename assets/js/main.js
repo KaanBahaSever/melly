@@ -43,7 +43,7 @@ let triggerPoint = 0;
 function isSticky(element) {
     if (window.scrollY > triggerPoint) {
         element.classList.add('is-sticky');
-        document.body.style.paddingTop = (element.offsetHeight + 20) + 'px';
+        document.body.style.paddingTop = (element.offsetHeight + 16) + 'px';
     }
     else {
         element.classList.remove('is-sticky');
@@ -84,10 +84,3 @@ window.addEventListener('DOMContentLoaded', () => {
 
     });
 });
-
-window.onresize = () => {
-    const tabs = document.querySelector('.tabs');
-    const top = tabs.getBoundingClientRect().top;
-    console.log("x = "+tabs.getBoundingClientRect().x, "y = "+tabs.getBoundingClientRect().y);  
-    if (tabs && top > 10) triggerPoint = top;
-};
