@@ -60,27 +60,26 @@ window.addEventListener('load', async () => {
         },
     );
     observer.observe(el);
+});
 
+document.addEventListener('scroll', function () {
+    clearTimeout(dobounceTimer);
+    dobounceTimer = setTimeout(() => {
+        const sections = document.querySelectorAll('.sub-menu');
+        sections.forEach((section, index) => {
+            const rect = section.getBoundingClientRect();
 
-    document.addEventListener('scroll', function () {
-        clearTimeout(dobounceTimer);
-        dobounceTimer = setTimeout(() => {
-            const sections = document.querySelectorAll('.sub-menu');
-            sections.forEach((section, index) => {
-                const rect = section.getBoundingClientRect();
-
-                if (rect.top - 100 <= 0 && rect.bottom - 100 >= 0) {
-                    if (prevIndex !== index) {
-                        setActiveTabandScroll(index);
-                        prevIndex = index;
-                    }
+            if (rect.top - 100 <= 0 && rect.bottom - 100 >= 0) {
+                if (prevIndex !== index) {
+                    setActiveTabandScroll(index);
+                    prevIndex = index;
                 }
-            });
-
-            if (window.scrollY === 0 && getOrientation() === 'portrait') {
-                setActiveTabandScroll(-1);
-                prevIndex = -1;
             }
-        }, 50);
-    });
+        });
+
+        if (window.scrollY === 0 && getOrientation() === 'portrait') {
+            setActiveTabandScroll(-1);
+            prevIndex = -1;
+        }
+    }, 50);
 });
