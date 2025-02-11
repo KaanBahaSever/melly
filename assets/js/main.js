@@ -18,7 +18,6 @@ function hideLogo() {
     enableScroll();
 }
 
-
 window.addEventListener('load', async () => {
     disableScroll();
     setTimeout(hideLogo, 2500);
