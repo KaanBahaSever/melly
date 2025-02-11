@@ -1,3 +1,11 @@
+function getOffset(el) {
+    const rect = el.getBoundingClientRect();
+    return {
+        left: rect.left + window.scrollX,
+        top: rect.top + window.scrollY
+    };
+}
+
 function disableScroll() {
     window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';
@@ -40,14 +48,23 @@ function setActiveTabandScroll(index) {
 }
 
 let triggerPoint = 0;
-function isSticky(element) {
+function isSticky(el) {
     if (window.scrollY > triggerPoint) {
-        element.classList.add('is-sticky');
-        document.body.style.paddingTop = (element.offsetHeight + 16) + 'px';
+        el.classList.add('is-sticky');
+        document.body.style.paddingTop = (el.offsetHeight + 16) + 'px';
     }
     else {
-        element.classList.remove('is-sticky');
+        el.classList.remove('is-sticky');
         document.body.style.paddingTop = 0;
+    }
+}
+
+function getOrientation() {
+    if (window.orientation === 0 || window.orientation === 180) {
+        return 'portrait';
+    }
+    else {
+        return 'landscape';
     }
 }
 
@@ -74,7 +91,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            if (window.scrollY === 0) {
+            if (window.scrollY === 0 && getOrientation() === 'portrait') {
                 setActiveTabandScroll(-1);
                 prevIndex = -1;
             }
@@ -83,4 +100,18 @@ window.addEventListener('DOMContentLoaded', () => {
         }, 100);
 
     });
+});
+
+//check orientation change event
+window.addEventListener('orientationchange', () => {
+    console.log('orientation change to ' + getOrientation());
+    setTimeout(() => {
+        const tabs = document.querySelector('.tabs-helper');
+        const realTabs = document.querySelector('.tabs').getBoundingClientRect().top;
+        if (realTabs <= 0) triggerPoint = getOffset(tabs).top - 80; //80 is the height of the sticky tabs
+        else triggerPoint = realTabs;
+
+        console.log('orientation change');
+        console.log("triggerPoint = " + triggerPoint);
+    }, 100);
 });
