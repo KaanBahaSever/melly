@@ -6,6 +6,7 @@ function disableScroll() {
 function enableScroll() {
     document.body.style.overflow = 'auto';
     //Set to scroll to top
+    window.scrollTo(0, 0);
 }
 
 function hideLogo() {
@@ -17,9 +18,10 @@ function hideLogo() {
     enableScroll();
 }
 
+
 window.addEventListener('load', async () => {
     disableScroll();
-    /* setTimeout(hideLogo, 2500); */
+    setTimeout(hideLogo, 2500);
 });
 
 function setActiveTabandScroll(index) {
@@ -39,47 +41,51 @@ function setActiveTabandScroll(index) {
     }
 }
 
-function isSticky(element, triggerPoint) {
-    if (window.scrollY > triggerPoint) {
-        element.classList.add('is-sticky');
-        document.body.style.paddingTop = (element.offsetHeight + 20) + 'px';
+function getOrientation() {
+    if (window.orientation === 0 || window.orientation === 180) {
+        return 'portrait';
     }
     else {
-        element.classList.remove('is-sticky');
-        document.body.style.paddingTop = 0;
+        return 'landscape';
     }
 }
 
 let dobounceTimer;
 let prevIndex = -1;
-window.addEventListener('DOMContentLoaded', () => {
-    const tabs = document.querySelector('.tabs');
-    const triggerPoint = tabs.getBoundingClientRect().top;
+window.addEventListener('load', async () => {
+    disableScroll();
+    setTimeout(hideLogo, 2500);
 
-    document.addEventListener('scroll', function () {
-        isSticky(tabs, triggerPoint);
+    const el = document.querySelector(".tabs")
+    const observer = new IntersectionObserver(
+        ([e]) => e.target.classList.toggle("is-sticky", !e.isIntersecting && el.getBoundingClientRect().bottom < window.innerHeight),
+        {
+            threshold: [1],
+            root: document,
+            rootMargin: '-11px 0px 0px 0px',
+        },
+    );
+    observer.observe(el);
+});
 
-        clearTimeout(dobounceTimer);
-        dobounceTimer = setTimeout(() => {
-            const sections = document.querySelectorAll('.sub-menu');
-            sections.forEach((section, index) => {
-                const rect = section.getBoundingClientRect();
+document.addEventListener('scroll', function () {
+    clearTimeout(dobounceTimer);
+    dobounceTimer = setTimeout(() => {
+        const sections = document.querySelectorAll('.sub-menu');
+        sections.forEach((section, index) => {
+            const rect = section.getBoundingClientRect();
 
-                if (rect.top - 100 <= 0 && rect.bottom - 100 >= 0) {
-                    if (prevIndex !== index) {
-                        setActiveTabandScroll(index);
-                        prevIndex = index;
-                    }
+            if (rect.top - 100 <= 0 && rect.bottom - 100 >= 0) {
+                if (prevIndex !== index) {
+                    setActiveTabandScroll(index);
+                    prevIndex = index;
                 }
-            });
-
-            if (window.scrollY === 0) {
-                setActiveTabandScroll(-1);
-                prevIndex = -1;
             }
+        });
 
-
-        }, 100);
-
-    });
+        if (window.scrollY === 0 && getOrientation() === 'portrait') {
+            setActiveTabandScroll(-1);
+            prevIndex = -1;
+        }
+    }, 50);
 });
