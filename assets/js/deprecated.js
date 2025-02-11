@@ -1,21 +1,9 @@
-function disableScroll() {
-    window.scrollTo(0, 0);
-    document.body.style.overflow = 'hidden';
-}
-
-function enableScroll() {
-    document.body.style.overflow = 'auto';
-    //Set to scroll to top
-    window.scrollTo(0, 0);
-}
-
-function hideLogo() {
-    const element = document.getElementById('logo-intro');
-    if (element) {
-        element.style.transition = '1s';
-        element.style.left = '-100%';
-    }
-    enableScroll();
+function getOffset(el) {
+    const rect = el.getBoundingClientRect();
+    return {
+        left: rect.left + window.scrollX,
+        top: rect.top + window.scrollY
+    };
 }
 
 function setActiveTabandScroll(index) {
@@ -35,6 +23,18 @@ function setActiveTabandScroll(index) {
     }
 }
 
+let triggerPoint = 0;
+function isSticky(el) {
+    if (window.scrollY > triggerPoint) {
+        el.classList.add('is-sticky');
+        document.body.style.paddingTop = (el.offsetHeight + 16) + 'px';
+    }
+    else {
+        el.classList.remove('is-sticky');
+        document.body.style.paddingTop = 0;
+    }
+}
+
 function getOrientation() {
     if (window.orientation === 0 || window.orientation === 180) {
         return 'portrait';
@@ -46,23 +46,13 @@ function getOrientation() {
 
 let dobounceTimer;
 let prevIndex = -1;
-window.addEventListener('load', async () => {
-    disableScroll();
-    setTimeout(hideLogo, 2500);
-
-    const el = document.querySelector(".tabs")
-    const observer = new IntersectionObserver(
-        ([e]) => e.target.classList.toggle("is-sticky", !e.isIntersecting),
-        {
-            threshold: [1],
-            root: document,
-            rootMargin: '-11px 0px 0px 0px',
-        },
-    );
-    observer.observe(el);
-
+window.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelector('.tabs');
+    triggerPoint = tabs.getBoundingClientRect().top;
 
     document.addEventListener('scroll', function () {
+        isSticky(tabs);
+
         clearTimeout(dobounceTimer);
         dobounceTimer = setTimeout(() => {
             const sections = document.querySelectorAll('.sub-menu');
@@ -81,6 +71,20 @@ window.addEventListener('load', async () => {
                 setActiveTabandScroll(-1);
                 prevIndex = -1;
             }
-        }, 50);
+        }, 100);
     });
+});
+
+//check orientation change event
+window.addEventListener('orientationchange', () => {
+    console.log('orientation change to ' + getOrientation());
+    setTimeout(() => {
+        const tabs = document.querySelector('.tabs-helper');
+        const realTabs = document.querySelector('.tabs').getBoundingClientRect().top;
+        if (realTabs <= 0) triggerPoint = getOffset(tabs).top - 80; //80 is the height of the sticky tabs
+        else triggerPoint = realTabs;
+
+        console.log('orientation change');
+        console.log("triggerPoint = " + triggerPoint);
+    }, 100);
 });

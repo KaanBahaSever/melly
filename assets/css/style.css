@@ -103,7 +103,7 @@ h1 {
 }
 
 .tabs {
-    position: initial;
+    position: sticky;
     top: 0;
     margin-top: 12px;
     display: flex;
@@ -111,6 +111,8 @@ h1 {
     gap: 12px;
     -ms-overflow-style: none;
     scrollbar-width: none;
+
+    transition: 0.5s;
 }
 
 .tabs.fixed {
@@ -153,8 +155,8 @@ a {
     margin-bottom: 7rem
 }
 
-.is-sticky {
-    position: fixed;
+.tabs.is-sticky {
+    /* position: fixed; */
     padding: .5rem;
     top: 0;
     left: 0;
@@ -163,6 +165,11 @@ a {
     width: 100%;
     background: #f3f3e5;
     border-bottom: 1px solid #0000000f;
+    margin-left: -1rem;
+    padding-right: 1.5rem;
+
+
+    transition: 0.5s;
 }
 
 #herbal-teas .sub-items {
