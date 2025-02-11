@@ -89,7 +89,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 window.onresize = () => {
     const tabs = document.querySelector('.tabs');
-    window.scrollY = 0;
+    //window.scrollY = 0;
     const top = tabs.getBoundingClientRect().top;
-    if (tabs && top > 10) triggerPoint = top;
+    console.log(top);
+    //if (tabs && top > 10) triggerPoint = top;
 };
