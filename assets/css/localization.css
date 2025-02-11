@@ -1,0 +1,228 @@
+html {
+    background: #f8f8e152;
+    scroll-behavior: smooth;
+
+    font-size: 24px;
+    font-family: serif;
+    font-style: italic;
+}
+
+body {
+    margin: 0;
+}
+
+* {
+    user-select: none
+}
+
+hr {
+    margin: 0;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.item-detail {
+    margin: 0;
+    font-size: 12px;
+    margin-bottom: 0.5rem;
+    margin-top: -12px;
+}
+
+.logo-intro-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+
+    left: 0;
+    top: 0;
+    transition: 1s;
+    z-index: 999;
+}
+
+.menu-container {
+    margin: 1rem;
+
+    display: flex;
+    justify-content: center;
+}
+
+.menu_header {
+    text-align: center;
+    border: 1px solid #00000036;
+    padding: 0.1rem 0;
+    border-radius: 15px;
+    background-color: white;
+    scroll-margin-top: 80px
+}
+
+.sub-item {
+    display: flex;
+    justify-content: space-between;
+
+    border-top: 1px solid #00000036;
+}
+
+.sub-item:first-child {
+    border-top: none;
+}
+
+.menus {
+    width: 100%;
+}
+
+.menu-logo {
+    width: 100%;
+}
+
+.logo-intro-img {
+    width: 90%;
+    animation: taadaa 2s linear;
+}
+
+@keyframes taadaa {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.sub-detail {
+    font-size: 15px;
+}
+
+.tabs {
+    position: sticky;
+    top: 0;
+    margin-top: 12px;
+    display: flex;
+    overflow: auto;
+    gap: 12px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    transition: 0.5s;
+}
+
+.tabs.fixed {
+    position: fixed;
+    padding: .5rem;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+    z-index: 12;
+    background: #f3f3e5;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+
+.tab {
+    white-space: nowrap;
+    border: 2px solid #0000001f;
+    border-radius: 16px;
+    padding: 12px;
+    background: white;
+    font-size: 20px;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tab.active {
+    background-color: black;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#menu .sub-menu:last-child {
+    margin-bottom: 7rem
+}
+
+.tabs.is-sticky {
+    /* position: fixed; */
+    padding: .5rem;
+    top: 0;
+    left: 0;
+    z-index: 12;
+    margin: 0;
+    width: 100%;
+    background: #f3f3e5;
+    border-bottom: 1px solid #0000000f;
+    margin-left: -1rem;
+    padding-right: 1.5rem;
+
+
+    transition: 0.5s;
+}
+
+#herbal-teas .sub-items {
+    display: block;
+}
+
+.item-price {
+    padding-left: 16px;
+}
+
+.sub-menu:last-child {
+    margin-bottom: 30rem;
+}
+
+.sub-menu-image {
+    width: 100%;
+}
+
+.hero {
+    text-align: center;
+}
+
+.language-selection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    width: 90%;
+    margin-top: 4rem;
+
+    p {
+        margin: 0;
+    }
+
+    animation: taadaa 2s linear;
+}
+
+.language {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    border-radius: 12px;
+    padding: 0.3rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.flag {
+    height: 36px;
+}
+
+.language:hover {
+    background-color: #0000001f;
+    cursor: pointer;
+}
