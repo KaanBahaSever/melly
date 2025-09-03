@@ -1,0 +1,343 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #fffbf2;
+
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+
+    background: transparent;
+    padding: 1rem 2rem;
+    color: #4b2e0e;
+
+    background-color: white;
+}
+
+.scrolled,
+.scrolled a {
+    backdrop-filter: blur(10px);
+    background-color: transparent !important;
+}
+
+.logo {
+    color: brown;
+}
+
+.logo-on-photo {
+    max-height: 150px;
+}
+
+
+.navbar-logo {
+    margin-right: 1rem;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: brown;
+    font-weight: bold;
+}
+
+.navbar ul li a:hover {
+    color: #c7a17a;
+}
+
+.navbar .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.navbar .menu-toggle span {
+    height: 3px;
+    width: 25px;
+    background: #fff;
+    margin: 4px 0;
+    border-radius: 2px;
+}
+
+@media (max-width: 760px) {
+    .about-bg {
+        padding: 0 !important;
+    }
+
+    .insta-photo {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        background: #4b2e0e;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 180px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-button-container {
+        display: flex !important;
+    }
+
+    .navbar ul.active {
+        display: flex;
+    }
+
+    .about img {
+        float: unset !important;
+    }
+
+    .about-bg {
+        padding: 0 !important;
+    }
+
+    .about {
+        border-radius: 0 !important;
+        flex-direction: column !important;
+    }
+
+    .coffee-quality {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+}
+
+.hero {
+    text-align: center;
+    /* padding: 4rem 2rem 2rem 2rem; */
+}
+
+.hero-img h1,
+.text-on-photo {
+    font-size: 2.5rem;
+
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+    text-align: center;
+    width: 100%;
+}
+
+.hero-img p {
+    font-size: 1.2rem;
+    color: #7c5c38;
+    margin-bottom: 2rem;
+}
+
+.coffee-img {
+    width: 220px;
+    margin-top: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(75, 46, 14, 0.15);
+}
+
+.menu-button-container {
+    display: none;
+
+    background-color: rgb(255 255 255 / 30%);
+    border: 1px solid rgba(126, 126, 126, 0.39);
+    padding: 6px;
+    border-radius: 12px;
+    cursor: pointer;
+
+    margin-left: auto;
+}
+
+#nav-links {
+    margin-left: auto;
+}
+
+.hero-img {
+    background-image: url('../images/bg-main-coffee.23f711826c7cd9dcfff7.webp');
+    height: 750px;
+    background-size: cover;
+    background-position: center;
+
+    padding-top: 7rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    color: #4b2e0e;
+    margin-top: 2rem;
+}
+
+section {
+    padding: 0 2rem;
+}
+
+h2 {
+    color: #4b2e0e;
+    margin-bottom: 1rem;
+}
+
+.cup-background {
+    z-index: 1;
+}
+
+.cup-description {
+    font-size: 1.5em;
+    z-index: 55;
+
+    color: #4b2e0e;
+}
+
+.about-title {
+    z-index: 2;
+    text-align: center;
+}
+
+.about-bg {
+    background: url('../images/bean.png') center;
+    /* Pick a suitable image for the effect */
+    padding: 0;
+
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.about {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 900px;
+    margin-top: -2rem;
+
+    box-shadow: inset 0px 0px 16px 5px #4b2e0e82;
+}
+
+.location-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.location-card {
+    background-color: #4b2e0e09;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #0001;
+    padding: 1.5rem;
+}
+
+a {
+    text-decoration: underline;
+    color: #4b2e0e;
+}
+
+.locations {
+    margin-top: 4rem;
+}
+
+.locations h2 {
+    text-align: center;
+}
+
+.coffee-quality {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    margin-top: 2rem;
+}
+
+.coffee-quality img {
+    border-radius: 12px;
+}
+
+.coffee-quality p {
+    text-align: center;
+    margin-left: 1rem;
+}
+
+.instagram-section {
+    margin: 4rem 0 2rem 0;
+    padding: 2rem 0;
+    background: #c7a17a17;
+    text-align: center;
+}
+
+.instagram-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #7c4a2f;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.instagram-gallery {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.instagram-gallery::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari */
+}
+
+.insta-photo {
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(124, 74, 47, 0.12);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+    background: #fff;
+    width: auto;
+}
+
+.insta-photo img {
+    height: 720px;
+    object-fit: cover;
+    display: block;
+}
+
+.instagram-follow {
+    margin-top: 2rem;
+}
+
+.instagram-btn:hover {
+    background: linear-gradient(90deg, #fdc8a72c 60%, #e1306b42 100%);
+    box-shadow: 0 4px 24px rgba(124, 74, 47, 0.18);
+}
