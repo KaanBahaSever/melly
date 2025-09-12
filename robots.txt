@@ -1,3 +1,11 @@
 User-agent: *
-Disallow: /melly/menu
-Allow: /
+Allow: /$
+
+Disallow: /menu
+Disallow: /menu.html
+Disallow: /menu-lang
+Disallow: /menu-lang.html
+Disallow: /cihangir-menu
+Disallow: /cihangir-menu.html
+Disallow: /menu-ex
+Disallow: /menu-ex.html
