@@ -1,5 +1,5 @@
 User-agent: *
-Allow: /$
+Allow: /
 
 Disallow: /menu
 Disallow: /menu.html
@@ -9,3 +9,5 @@ Disallow: /cihangir-menu
 Disallow: /cihangir-menu.html
 Disallow: /menu-ex
 Disallow: /menu-ex.html
+
+Sitemap: https://mellycoffee.co/sitemap.xml
