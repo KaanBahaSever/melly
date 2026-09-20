@@ -368,13 +368,28 @@ main:focus {
     letter-spacing: -0.01em;
 }
 
+.place__info {
+    margin-top: 0.5rem;
+}
+
 .place__address {
     max-width: 30ch;
-    margin-top: 0.5rem;
     color: var(--ink-soft);
     font-size: var(--text-small);
     font-style: normal;
     line-height: 1.6;
+}
+
+.place__hours {
+    margin-top: 0.375rem;
+    color: var(--ink-soft);
+    font-size: var(--text-small);
+    line-height: 1.6;
+}
+
+.place__hours time {
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
 }
 
 .link {
@@ -386,9 +401,6 @@ main:focus {
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-}
-
-.link {
     color: var(--accent);
     transition: color 0.25s var(--ease);
 }
@@ -442,29 +454,6 @@ main:focus {
     }
 }
 
-/* ---------- Opening hours ---------- */
-
-.hours {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.hours__days {
-    color: var(--ink-soft);
-    font-size: var(--text-small);
-}
-
-.hours__time {
-    font-family: var(--serif);
-    font-size: min(clamp(2.25rem, 1.4rem + 5vw, 4.5rem), 13vw);
-    font-weight: 300;
-    font-variant-numeric: lining-nums tabular-nums;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    white-space: nowrap;
-}
-
 /* ---------- Footer ---------- */
 
 .footer {
@@ -485,6 +474,14 @@ main:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.footer__note {
+    max-width: 34ch;
+    color: var(--ink-soft);
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    text-wrap: balance;
 }
 
 .footer__legal {
@@ -612,9 +609,7 @@ main:focus {
         padding-bottom: 0;
     }
 
-    /* a row without an address keeps its link on the name's line */
-    .place__address,
-    .place__name + .link {
+    .place__info {
         margin-top: 0;
     }
 
@@ -632,6 +627,15 @@ main:focus {
     .footer__links {
         flex-direction: row;
         gap: 2rem;
+    }
+
+    /* the note sits on its own line under the logo / Instagram / copyright row */
+    .footer__note {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: center;
+        max-width: none;
+        text-align: center;
     }
 
     .footer__legal {

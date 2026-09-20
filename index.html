@@ -40,7 +40,7 @@
         imagesizes="100vw">
 
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300&amp;family=Jost:wght@400;500&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/landing.css?v=2">
+    <link rel="stylesheet" href="assets/css/landing.css?v=3">
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
@@ -49,7 +49,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
     <link rel="mask-icon" href="assets/images/favicon.ico" color="#000000">
 
-    <script src="assets/js/landing.js?v=2" defer></script>
+    <script src="assets/js/landing.js?v=3" defer></script>
 
     <!-- Structured Data: Organization & Local Business -->
     <script type="application/ld+json">
@@ -84,6 +84,13 @@
             "addressLocality": "Beyoğlu",
             "addressRegion": "İstanbul",
             "postalCode": "34421",
+            "addressCountry": "TR"
+        },{
+            "@type": "PostalAddress",
+            "streetAddress": "100. Yıl, Filistin Cd. 31/A",
+            "addressLocality": "Çankaya",
+            "addressRegion": "Ankara",
+            "postalCode": "06700",
             "addressCountry": "TR"
         }],
         "servesCuisine": ["Coffee", "Desserts"],
@@ -167,7 +174,10 @@
             <ul class="places">
                 <li class="place">
                     <h3 class="place__name" lang="tr">Suadiye</h3>
-                    <address class="place__address" lang="tr">Nurettin Ali Berkol Sk. No:35/A, Suadiye, 34740 Kadıköy / İstanbul</address>
+                    <div class="place__info">
+                        <address class="place__address" lang="tr">Nurettin Ali Berkol Sk. No:35/A, Suadiye, 34740 Kadıköy / İstanbul</address>
+                        <p class="place__hours"><span data-i18n="closes">Kapanış</span> <time datetime="02:00">02:00</time></p>
+                    </div>
                     <a class="link" href="https://maps.app.goo.gl/rZutMjoCuZXwiSz1A" target="_blank" rel="noopener" aria-label="Yol tarifi: Suadiye" data-i18n-attr="aria-label:directionsSuadiye">
                         <span data-i18n="directions">Yol tarifi</span>
                         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -175,7 +185,10 @@
                 </li>
                 <li class="place">
                     <h3 class="place__name" lang="tr">Cihangir</h3>
-                    <address class="place__address" lang="tr">Firuzağa Cami Sk. No:2 D:E, Kuloğlu, 34421 Beyoğlu / İstanbul</address>
+                    <div class="place__info">
+                        <address class="place__address" lang="tr">Firuzağa Cami Sk. No:2 D:E, Kuloğlu, 34421 Beyoğlu / İstanbul</address>
+                        <p class="place__hours"><span data-i18n="closes">Kapanış</span> <time datetime="23:00">23:00</time></p>
+                    </div>
                     <a class="link" href="https://maps.app.goo.gl/hLk9KPscCnUFr79dA" target="_blank" rel="noopener" aria-label="Yol tarifi: Cihangir" data-i18n-attr="aria-label:directionsCihangir">
                         <span data-i18n="directions">Yol tarifi</span>
                         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -183,22 +196,16 @@
                 </li>
                 <li class="place">
                     <h3 class="place__name" lang="tr">Ankara</h3>
-                    <!-- TODO(owner): add the street address, as in the two rows above: <address class="place__address" lang="tr">…</address> -->
+                    <div class="place__info">
+                        <address class="place__address" lang="tr">100. Yıl, Filistin Cd. 31/A, 06700 Çankaya/Ankara</address>
+                        <p class="place__hours"><span data-i18n="closes">Kapanış</span> <time datetime="00:00">00:00</time></p>
+                    </div>
                     <a class="link" href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x14d34f6985e854a9:0x26dad9d5a20463fe?sa=X&amp;ved=1t:8290&amp;ictx=111" target="_blank" rel="noopener" aria-label="Yol tarifi: Ankara" data-i18n-attr="aria-label:directionsAnkara">
                         <span data-i18n="directions">Yol tarifi</span>
                         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
                 </li>
             </ul>
-        </section>
-
-        <section class="block reveal" aria-labelledby="hours-title">
-            <h2 class="eyebrow" id="hours-title" data-i18n="hoursTitle">Çalışma Saatleri</h2>
-            <!-- TODO(owner): replace with real opening hours -->
-            <p class="hours">
-                <span class="hours__days" data-i18n="everyDay">Her gün</span>
-                <span class="hours__time">08:00 – 23:00</span>
-            </p>
         </section>
     </main>
 
@@ -211,18 +218,11 @@
                     <span>@mellycoffeeco</span>
                 </a>
             </li>
-            <!-- TODO(owner): add a working e-mail address. mellycoffee.co has no mail (MX) record yet, so info@mellycoffee.co would bounce.
-            <li>
-                <a class="link link--quiet" href="mailto:info@mellycoffee.co">
-                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span>info@mellycoffee.co</span>
-                </a>
-            </li>
-            -->
             <!-- TODO(owner): add the real phone number
             <li><a class="link link--quiet" href="tel:+90XXXXXXXXXX">+90 XXX XXX XX XX</a></li>
             -->
         </ul>
+        <p class="footer__note" data-i18n="franchise">Bayilik görüşmeleri için lütfen Instagram üzerinden iletişime geçiniz.</p>
         <p class="footer__legal">© <span id="year">2026</span> Melly Coffee Co. <span data-i18n="rights">Tüm hakları saklıdır.</span></p>
     </footer>
 </body>

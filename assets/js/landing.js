@@ -23,8 +23,8 @@
             directionsSuadiye: 'Get directions: Suadiye',
             directionsCihangir: 'Get directions: Cihangir',
             directionsAnkara: 'Get directions: Ankara',
-            hoursTitle: 'Opening Hours',
-            everyDay: 'Every day',
+            closes: 'Closes at',
+            franchise: 'For franchise inquiries, please contact us via Instagram.',
             rights: 'All rights reserved.'
         }
     };
