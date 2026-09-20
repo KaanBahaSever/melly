@@ -3,10 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Melly Coffee Co.</title>
     <meta name="description" content="Melly Coffee Co. – Suadiye ve Cihangir'de özenle seçilmiş kahve çekirdekleriyle hazırlanan kahveler, sıcak atmosfer ve lezzetli menü. Yakında Ankara'da!">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1c1410">
+    <meta name="color-scheme" content="light">
 
     <link rel="canonical" href="https://mellycoffee.co/">
 
@@ -25,9 +27,18 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans" rel="stylesheet">
+    <link rel="preconnect" href="https://images.unsplash.com">
 
-    <link rel="stylesheet" href="assets/css/main.css?v=3.1">
+    <!-- Hero image preloads: keep media + srcset identical to the <picture> in the hero -->
+    <link rel="preload" as="image" fetchpriority="high" media="(orientation: portrait)"
+        imagesrcset="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;w=640&amp;h=1138&amp;q=70 640w, https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;w=960&amp;h=1707&amp;q=70 960w, https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;w=1280&amp;h=2276&amp;q=70 1280w"
+        imagesizes="100vw">
+    <link rel="preload" as="image" fetchpriority="high" media="(orientation: landscape)"
+        imagesrcset="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-y=0.72&amp;w=1280&amp;h=800&amp;q=70 1280w, https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-y=0.72&amp;w=1920&amp;h=1200&amp;q=70 1920w, https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-y=0.72&amp;w=2560&amp;h=1600&amp;q=70 2560w"
+        imagesizes="100vw">
+
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..500&amp;family=Jost:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/landing.css?v=1">
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
@@ -36,189 +47,174 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
     <link rel="mask-icon" href="assets/images/favicon.ico" color="#000000">
 
-    <script src="assets/js/index.js"></script>
+    <script src="assets/js/landing.js?v=1" defer></script>
 
-        <!-- Structured Data: Organization & Local Business -->
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Melly Coffee Co.",
-            "url": "https://mellycoffee.co/",
-            "logo": "https://mellycoffee.co/assets/images/logo-v3.svg",
-            "sameAs": [
-                "https://instagram.com/mellycoffeeco"
-            ]
-        }
-        </script>
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "CafeOrCoffeeShop",
-            "name": "Melly Coffee Co.",
-            "url": "https://mellycoffee.co/",
-            "image": "https://mellycoffee.co/assets/images/logo-v3.svg",
-            "address": [{
-                "@type": "PostalAddress",
-                "streetAddress": "Nurettin Ali Berkol Sokağı No:35/A",
-                "addressLocality": "Kadıköy",
-                "addressRegion": "İstanbul",
-                "postalCode": "34740",
-                "addressCountry": "TR"
-            },{
-                "@type": "PostalAddress",
-                "streetAddress": "Firuzağa Cami Sk. No:2 D:E",
-                "addressLocality": "Beyoğlu",
-                "addressRegion": "İstanbul",
-                "postalCode": "34421",
-                "addressCountry": "TR"
-            }],
-            "servesCuisine": ["Coffee", "Desserts"],
-            "priceRange": "₺₺",
-            "sameAs": ["https://instagram.com/mellycoffeeco"]
-        }
-        </script>
+    <!-- Structured Data: Organization & Local Business -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Melly Coffee Co.",
+        "url": "https://mellycoffee.co/",
+        "logo": "https://mellycoffee.co/assets/images/logo-v3.svg",
+        "sameAs": [
+            "https://instagram.com/mellycoffeeco"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "Melly Coffee Co.",
+        "url": "https://mellycoffee.co/",
+        "image": "https://mellycoffee.co/assets/images/logo-v3.svg",
+        "address": [{
+            "@type": "PostalAddress",
+            "streetAddress": "Nurettin Ali Berkol Sokağı No:35/A",
+            "addressLocality": "Kadıköy",
+            "addressRegion": "İstanbul",
+            "postalCode": "34740",
+            "addressCountry": "TR"
+        },{
+            "@type": "PostalAddress",
+            "streetAddress": "Firuzağa Cami Sk. No:2 D:E",
+            "addressLocality": "Beyoğlu",
+            "addressRegion": "İstanbul",
+            "postalCode": "34421",
+            "addressCountry": "TR"
+        }],
+        "servesCuisine": ["Coffee", "Desserts"],
+        "priceRange": "₺₺",
+        "sameAs": ["https://instagram.com/mellycoffeeco"]
+    }
+    </script>
 </head>
 
 <body>
-    <nav class="navbar">
-        <img class="navbar-logo" src="assets/images/coffee.png" alt="Melly Coffee Co." width="30px" height="33">
-        <div class="logo">Melly Coffee Co.</div>
+    <a class="skip-link" href="#main" data-i18n="skip">İçeriğe geç</a>
 
-        <div class="menu-button-container">
-            <img class="toggle-button" src="assets/images/menu.png" alt="Menu" width="30px" height="30px">
+    <header class="topbar">
+        <!-- lang="tr" is pinned on Turkish proper nouns so uppercase keeps the dotted İ when the page is in English -->
+        <p class="topbar__place" lang="tr">Suadiye · Cihangir</p>
+        <div class="lang" role="group" aria-label="Dil" data-i18n-attr="aria-label:langLabel">
+            <button class="lang__btn" type="button" data-lang="tr" aria-pressed="true" aria-label="Türkçe">TR</button>
+            <span class="lang__sep" aria-hidden="true">/</span>
+            <button class="lang__btn" type="button" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
         </div>
+    </header>
 
-        <div class="menu-toggle" id="menu-toggle">
-            <li><a href="#home">Ana Sayfa</a></li>
-            <li><a href="#about">Hakkımızda</a></li>
-            <li><a href="#contact">İletişim</a></li>
-        </div>
+    <main id="main" tabindex="-1">
+        <!-- All Unsplash photos on this page are placeholders, to be replaced by Melly's own photography -->
+        <section class="hero" aria-labelledby="hero-title">
+            <picture class="hero__media">
+                <source media="(orientation: portrait)" sizes="100vw" width="1280" height="2276"
+                    srcset="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;w=640&amp;h=1138&amp;q=70 640w, https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;w=960&amp;h=1707&amp;q=70 960w, https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;w=1280&amp;h=2276&amp;q=70 1280w">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-y=0.72&amp;w=1920&amp;h=1200&amp;q=70"
+                    srcset="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-y=0.72&amp;w=1280&amp;h=800&amp;q=70 1280w, https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-y=0.72&amp;w=1920&amp;h=1200&amp;q=70 1920w, https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&amp;fit=crop&amp;crop=focalpoint&amp;fp-y=0.72&amp;w=2560&amp;h=1600&amp;q=70 2560w"
+                    sizes="100vw" width="1920" height="1200" alt="" fetchpriority="high" decoding="async">
+            </picture>
 
-        <ul id="nav-links">
-            <li><a href="#home">Ana Sayfa</a></li>
-            <li><a href="#about">Hakkımızda</a></li>
-            <li><a href="#contact">İletişim</a></li>
-        </ul>
-
-    </nav>
-
-    <div class="hero-img">
-        <img class="logo-on-photo" src="assets/images/logo-v3-white.svg?v=5" alt="Melly Coffee Co.">
-        <h1 style="margin: 0;">Melly Coffee'ye Hoş Geldiniz</h1>
-        <p class="text-on-photo" style="color: #fff1e1 !important;">
-            En iyi kahve çeşitlerini keşfedin,
-            sizin için taze demlenmiş.
-            Güne mükemmel bir fincanla başlayın!</p>
-    </div>
-
-    <!-- <div class="about-bg">
-        <section class="about">
-            <img style="width: 20rem; height: 20rem;" src="assets/images/hero-002-free-img.png">
-            <div>
-                <h2 class="about-title">Hakkımızda</h2>
-                <p class="cup-description">
-                    Melly Coffee Co. olarak, kahve tutkunlarına özel lezzetler sunuyoruz. Sıcak atmosferimiz ve özenle
-                    seçilmiş
-                    çekirdeklerimizle, her fincanı unutulmaz bir deneyime dönüştürüyoruz. Şu anda Suadiye ve
-                    Cihangir’deki
-                    şubelerimizde, misafirlerimize eşsiz kahve çeşitlerimizi ve samimi ortamımızı sunmanın mutluluğunu
-                    yaşıyoruz. Yakında Ankara’da açılacak yeni şubemizle, Melly Coffee Co. kalitesini daha fazla kişiye
-                    ulaştırmayı hedefliyoruz.
-                </p>
+            <div class="hero__content">
+                <h1 class="hero__logo" id="hero-title">
+                    <img src="assets/images/logo-v3-white.svg" alt="Melly Coffee Co." width="266" height="100">
+                </h1>
+                <p class="hero__tagline" data-i18n="tagline">İyi kahve, sıcak bir karşılama.</p>
+                <!-- TODO: replace with the exact karecik.com menu URL if it has a path (also used twice further down) -->
+                <a class="btn btn--light" id="hero-cta" href="https://karecik.com" target="_blank" rel="noopener">
+                    <span data-i18n="cta">Menüyü Gör</span>
+                    <svg class="btn__icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
             </div>
         </section>
-    </div> -->
 
-   <!--  <div class="section-title">
-        <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Hakkımızda</h4>
-       <h1 class="display-4">allinmelly</h1>
-    </div> -->
+        <section class="block reveal" aria-labelledby="about-title">
+            <h2 class="eyebrow" id="about-title" data-i18n="aboutTitle">Hakkımızda</h2>
+            <p class="lead" data-i18n="aboutText">Melly Coffee’de her fincan, özenle seçilmiş çekirdeklerle ve usta baristaların elinden taze hazırlanır. Suadiye ve Cihangir’deki şubelerimizde sizi sıcak, samimi bir atmosferde ağırlıyoruz — güne iyi bir kahveyle başlamak ya da dostlarla uzun sohbetlere dalmak için. Yakında Ankara’dayız.</p>
+        </section>
 
-    <section class="coffee-quality" style="flex-direction: row;">
-        <img src="assets/images/latte-art.png" alt="resim" height="400px">
-        <p class="cup-description">
-            Melly Coffee Co. olarak, kahve tutkunlarına özel lezzetler sunuyoruz. Sıcak atmosferimiz ve özenle
-            seçilmiş
-            çekirdeklerimizle, her fincanı unutulmaz bir deneyime dönüştürüyoruz. Şu anda Suadiye ve
-            Cihangir’deki
-            şubelerimizde, misafirlerimize eşsiz kahve çeşitlerimizi ve samimi ortamımızı sunmanın mutluluğunu
-            yaşıyoruz. Yakında Ankara’da açılacak yeni şubemizle, Melly Coffee Co. kalitesini daha fazla kişiye
-            ulaştırmayı hedefliyoruz.
-    </section>
+        <figure class="plate reveal">
+            <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&amp;fit=crop&amp;w=1200&amp;q=70"
+                srcset="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&amp;fit=crop&amp;w=640&amp;q=70 640w, https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&amp;fit=crop&amp;w=1200&amp;q=70 1200w, https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&amp;fit=crop&amp;w=2000&amp;q=70 2000w"
+                sizes="(min-width: 1200px) 1104px, 100vw" width="1200" height="800"
+                alt="Pencere kenarında bitkilerle çevrili sakin bir kahve masası" data-i18n-attr="alt:plateAlt"
+                loading="lazy" decoding="async">
+        </figure>
 
-    <section class="coffee-quality">
-        <img src="assets/images/cup-beans.jpg" alt="resim" height="400px">
-        <p class="cup-description">
-            Kullandığımız kahve çekirdekleri, dünyanın en iyi çiftliklerinden özenle seçilmekte ve uzman baristalarımız
-            tarafından en taze ve doğru şekilde hazırlanıyor. Her damlasında kaliteyi ve lezzeti hissedeceğiniz
-            kahvelerimizle, güne keyifli bir başlangıç yapabilir veya arkadaşlarınızla hoş sohbetler eşliğinde huzurlu
-            vakit geçirebilirsiniz.
-    </section>
+        <section class="block reveal" aria-labelledby="locations-title">
+            <h2 class="eyebrow" id="locations-title" data-i18n="locationsTitle">Şubeler</h2>
+            <ul class="places">
+                <li class="place">
+                    <h3 class="place__name" lang="tr">Suadiye</h3>
+                    <address class="place__address" lang="tr">Nurettin Ali Berkol Sk. No:35/A, Suadiye, 34740 Kadıköy / İstanbul</address>
+                    <a class="link" href="https://maps.app.goo.gl/rZutMjoCuZXwiSz1A" target="_blank" rel="noopener" aria-label="Yol tarifi: Suadiye" data-i18n-attr="aria-label:directionsSuadiye">
+                        <span data-i18n="directions">Yol tarifi</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </li>
+                <li class="place">
+                    <h3 class="place__name" lang="tr">Cihangir</h3>
+                    <address class="place__address" lang="tr">Firuzağa Cami Sk. No:2 D:E, Kuloğlu, 34421 Beyoğlu / İstanbul</address>
+                    <a class="link" href="https://maps.app.goo.gl/hLk9KPscCnUFr79dA" target="_blank" rel="noopener" aria-label="Yol tarifi: Cihangir" data-i18n-attr="aria-label:directionsCihangir">
+                        <span data-i18n="directions">Yol tarifi</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </li>
+                <li class="place place--soon">
+                    <h3 class="place__name" lang="tr">Ankara</h3>
+                    <p class="place__soon" data-i18n="soon">Çok yakında</p>
+                </li>
+            </ul>
+        </section>
 
-    <section class="coffee-quality" style="flex-direction: row;">
-        <img src="assets/images/cup2.png" alt="resim" height="400px">
-        <p class="cup-description">
-            Melly Coffee Co. olarak, misafirlerimizin memnuniyetini her zaman ön planda tutuyor, kahve deneyimini sadece
-            bir içecekten öteye taşıyoruz. Suadiye, Cihangir ve çok yakında Ankara’daki şubelerimizde sizleri ağırlamak,
-            birlikte kahvenin en iyisini keşfetmek için sabırsızlanıyoruz.
-    </section>
+        <section class="block reveal" aria-labelledby="hours-title">
+            <h2 class="eyebrow" id="hours-title" data-i18n="hoursTitle">Çalışma Saatleri</h2>
+            <!-- TODO(owner): replace with real opening hours -->
+            <p class="hours">
+                <span class="hours__days" data-i18n="everyDay">Her gün</span>
+                <span class="hours__time">08:00 – 23:00</span>
+            </p>
+        </section>
 
-
-
-    <section class="instagram-section">
-        <a class="instagram-title" style="text-decoration: none;" href="https://instagram.com/mellycoffeeco"
-            target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram Logo"
-                style="width: 30px; height: 30px; vertical-align: middle;">
-            Instagram'da Biz
-        </a>
-        <div class="instagram-gallery">
-            <a id="insta-photo-1" href="https://instagram.com/mellycoffeeco" target="_blank" class="insta-photo">
-                <img src="assets/images/insta_1.jpg" alt="Instagram Fotoğrafı 1">
+        <section class="closing reveal" id="closing" aria-label="Menü" data-i18n-attr="aria-label:menuLabel">
+            <p class="closing__line" data-i18n="closing">Kahveniz hazır.</p>
+            <a class="btn btn--dark" href="https://karecik.com" target="_blank" rel="noopener">
+                <span data-i18n="cta">Menüyü Gör</span>
+                <svg class="btn__icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <a id="insta-photo-2" href="https://instagram.com/mellycoffeeco" target="_blank" class="insta-photo">
-                <img src="assets/images/insta_2.jpg" alt="Instagram Fotoğrafı 2">
+        </section>
+
+        <!-- Phones only: floats in while neither menu button above is on screen. It is a touch shortcut duplicating
+             those two links, so it stays out of the tab order and the accessibility tree. Enabled by landing.js. -->
+        <div class="dock" id="dock" aria-hidden="true" hidden>
+            <a class="btn btn--dark" href="https://karecik.com" target="_blank" rel="noopener" tabindex="-1">
+                <span data-i18n="ctaShort">Menü</span>
+                <svg class="btn__icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <a id="insta-photo-3" href="https://instagram.com/mellycoffeeco" target="_blank" class="insta-photo">
-                <img src="assets/images/insta_3.jpg" alt="Instagram Fotoğrafı 3">
-            </a>
-            <a id="insta-photo-4" href="https://instagram.com/mellycoffeeco" target="_blank" class="insta-photo">
-                <img src="assets/images/insta_4.jpg" alt="Instagram Fotoğrafı 4"></a>
         </div>
-    </section>
+    </main>
 
-    <section class="locations">
-        <h2>Şubelerimiz</h2>
-        <div class="location-cards">
-            <div class="location-card">
-                <h3>Suadiye Şube</h3>
-                <a target="_blank" href="https://maps.app.goo.gl/rZutMjoCuZXwiSz1A">Adres: Suadiye, Nurettin Ali Berkol
-                    Sokağı No:35/A, 34740 Kadıköy/İstanbul</a>
-                <p>Şehrin kalbinde, modern ve sıcak bir ortam.</p>
-            </div>
-            <div class="location-card">
-                <h3>Cihangir Şube</h3>
-                <a target="_blank" href="https://maps.app.goo.gl/hLk9KPscCnUFr79dA">Adres: Kuloğlu, Firuzağa Cami Sk.
-                    No:2 D:E, 34421 Beyoğlu/İstanbul</a>
-                <p>Genç ve dinamik atmosfer, açık alan.</p>
-            </div>
-            <div class="location-card">
-                <h3>Ankara Şube</h3>
-                <p>Çok Yakında</p>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="">
-        <h2 style="text-align: center;">Bayilik için</h2>
-        <!-- link to direct to phone -->
-        <p>Telefon: <a href="tel:+901234567890">+90 123 456 78 90</a></p>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Melly Coffee Co. Tüm hakları saklıdır.</p>
+    <footer class="footer">
+        <img class="footer__logo" src="assets/images/logo-v3.svg" alt="" width="106" height="40" loading="lazy" decoding="async">
+        <ul class="footer__links">
+            <li>
+                <a class="link link--quiet" href="https://instagram.com/mellycoffeeco" target="_blank" rel="noopener" aria-label="Instagram: @mellycoffeeco">
+                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg>
+                    <span>@mellycoffeeco</span>
+                </a>
+            </li>
+            <li>
+                <!-- TODO(owner): confirm e-mail address -->
+                <a class="link link--quiet" href="mailto:info@mellycoffee.co">
+                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>info@mellycoffee.co</span>
+                </a>
+            </li>
+            <!-- TODO(owner): add the real phone number
+            <li><a class="link link--quiet" href="tel:+90XXXXXXXXXX">+90 XXX XXX XX XX</a></li>
+            -->
+        </ul>
+        <p class="footer__legal">© <span id="year">2026</span> Melly Coffee Co. <span data-i18n="rights">Tüm hakları saklıdır.</span></p>
     </footer>
 </body>
 
