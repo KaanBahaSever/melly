@@ -9,6 +9,7 @@
     --accent: #96481f;
     --night: #1c1410;
     --cream: #f8f2e7;
+    --plate: #d9d2c3; /* shown behind photos while they load */
 
     --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
     --sans: "Jost", "Avenir Next", "Century Gothic", "Segoe UI", system-ui, sans-serif;
@@ -124,7 +125,7 @@ main:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: calc(env(safe-area-inset-top) + 0.75rem) calc(env(safe-area-inset-right) + var(--gutter) - 0.75rem) 0 calc(env(safe-area-inset-left) + var(--gutter));
+    padding: calc(env(safe-area-inset-top) + 0.75rem) calc(max(var(--gutter), env(safe-area-inset-right)) - 0.75rem) 0 max(var(--gutter), env(safe-area-inset-left));
     color: #fff;
     font-size: var(--text-label);
     font-weight: 500;
@@ -147,7 +148,7 @@ main:focus {
     font: inherit;
     letter-spacing: inherit;
     cursor: pointer;
-    opacity: 0.72;
+    opacity: 0.85;
     transition: opacity 0.25s var(--ease);
 }
 
@@ -189,14 +190,15 @@ main:focus {
     object-fit: cover;
 }
 
-/* Bottom-up scrim keeps logo, tagline and CTA at AA contrast; a light top scrim does the same for the top bar. */
+/* Bottom-up scrim keeps logo, tagline and CTA at AA contrast. The top scrim does the same for the top bar: its length
+   follows the bar, not the hero height, so it holds on short screens and with whatever photo replaces this one. */
 .hero__media::after {
     content: "";
     position: absolute;
     inset: 0;
     background:
         linear-gradient(to top, rgba(28, 20, 16, 0.94) 0%, rgba(28, 20, 16, 0.82) 34%, rgba(28, 20, 16, 0.42) 56%, rgba(28, 20, 16, 0) 80%),
-        linear-gradient(to bottom, rgba(28, 20, 16, 0.55) 0%, rgba(28, 20, 16, 0) 22%);
+        linear-gradient(to bottom, rgba(28, 20, 16, 0.7) 0, rgba(28, 20, 16, 0.62) calc(env(safe-area-inset-top) + 4.5rem), rgba(28, 20, 16, 0) calc(env(safe-area-inset-top) + 11rem));
 }
 
 .hero__content {
@@ -204,7 +206,7 @@ main:focus {
     width: 100%;
     max-width: calc(var(--measure) + 2 * var(--gutter));
     margin-inline: auto;
-    padding: 0 calc(env(safe-area-inset-right) + var(--gutter)) calc(env(safe-area-inset-bottom) + clamp(2rem, 7vh, 4rem)) calc(env(safe-area-inset-left) + var(--gutter));
+    padding: 0 max(var(--gutter), env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + clamp(2rem, 7vh, 4rem)) max(var(--gutter), env(safe-area-inset-left));
 }
 
 .hero__logo img {
@@ -227,12 +229,12 @@ main:focus {
 .btn {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
+    gap: 0.75rem;
     width: 100%;
     max-width: 22rem;
     min-height: 3.5rem;
     padding: 0 1.25rem 0 1.5rem;
+    border: 1px solid transparent; /* becomes the button's outline in forced-colors mode */
     border-radius: var(--radius);
     font-size: 0.8125rem;
     font-weight: 500;
@@ -246,13 +248,17 @@ main:focus {
     color: var(--ink);
 }
 
-.btn--dark {
-    background: var(--ink);
-    color: var(--cream);
+/* The default ring uses currentColor, i.e. the label colour, which vanishes against the dark photo behind the button */
+.btn--light:focus-visible {
+    outline-color: var(--cream);
+}
+
+.btn svg {
+    flex: none;
 }
 
 .btn__icon {
-    flex: none;
+    margin-left: auto;
     transition: transform 0.3s var(--ease);
 }
 
@@ -265,10 +271,6 @@ main:focus {
         background: #fff;
     }
 
-    .btn--dark:hover {
-        background: var(--accent);
-    }
-
     .btn:hover .btn__icon {
         transform: translateX(4px);
     }
@@ -278,7 +280,6 @@ main:focus {
 
 .block,
 .plate,
-.closing,
 .footer {
     max-width: var(--measure);
     margin-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
@@ -311,9 +312,29 @@ main:focus {
     text-wrap: pretty;
 }
 
+/* ---------- Instagram ---------- */
+
+.insta .link {
+    margin-top: 0.75rem;
+}
+
+.insta__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+}
+
+.insta__grid img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: var(--plate);
+}
+
 .plate {
     margin-bottom: var(--space-block);
-    background: #d9d2c3;
+    background: var(--plate);
 }
 
 .plate img {
@@ -347,10 +368,6 @@ main:focus {
     letter-spacing: -0.01em;
 }
 
-.place--soon .place__name {
-    color: var(--ink-soft);
-}
-
 .place__address {
     max-width: 30ch;
     margin-top: 0.5rem;
@@ -360,8 +377,7 @@ main:focus {
     line-height: 1.6;
 }
 
-.link,
-.place__soon {
+.link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -375,12 +391,6 @@ main:focus {
 .link {
     color: var(--accent);
     transition: color 0.25s var(--ease);
-}
-
-.place__soon {
-    min-height: 0;
-    margin-top: 0.75rem;
-    color: var(--ink-soft);
 }
 
 .link svg {
@@ -401,6 +411,12 @@ main:focus {
 
 .place .link:active svg {
     transform: translate(2px, -2px);
+}
+
+.link--handle {
+    font-size: var(--text-small);
+    letter-spacing: 0.04em;
+    text-transform: none;
 }
 
 .link--quiet {
@@ -441,60 +457,12 @@ main:focus {
 
 .hours__time {
     font-family: var(--serif);
-    font-size: clamp(2.25rem, 1.4rem + 5vw, 4.5rem);
+    font-size: min(clamp(2.25rem, 1.4rem + 5vw, 4.5rem), 13vw);
     font-weight: 300;
     font-variant-numeric: lining-nums tabular-nums;
     line-height: 1.1;
     letter-spacing: -0.02em;
     white-space: nowrap;
-}
-
-/* ---------- Closing call to action ---------- */
-
-.closing {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding-block: var(--space-block);
-    border-top: 1px solid var(--rule);
-    text-align: center;
-}
-
-.closing__line {
-    font-family: var(--serif);
-    font-size: var(--text-display);
-    font-weight: 300;
-    line-height: 1.12;
-    letter-spacing: -0.015em;
-}
-
-/* ---------- Floating menu button (phones only) ---------- */
-
-.dock {
-    position: fixed;
-    right: max(var(--gutter), env(safe-area-inset-right));
-    bottom: calc(env(safe-area-inset-bottom) + 1rem);
-    z-index: 5;
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(1.5rem);
-    transition: opacity 0.35s var(--ease), transform 0.45s var(--ease), visibility 0s 0.45s;
-}
-
-.dock.is-shown {
-    visibility: visible;
-    opacity: 1;
-    transform: none;
-    transition: opacity 0.35s var(--ease), transform 0.45s var(--ease);
-}
-
-.dock .btn {
-    width: auto;
-    min-height: 3rem;
-    gap: 1rem;
-    padding: 0 1rem 0 1.25rem;
-    box-shadow: 0 0.5rem 1.5rem rgba(28, 20, 16, 0.24);
 }
 
 /* ---------- Footer ---------- */
@@ -527,7 +495,7 @@ main:focus {
 
 /* ---------- Motion (only when welcome) ---------- */
 
-@media (prefers-reduced-motion: no-preference) {
+@media screen and (prefers-reduced-motion: no-preference) {
     .hero__media img {
         animation: hero-settle 1.8s var(--ease) both;
     }
@@ -562,9 +530,7 @@ main:focus {
     .btn__icon,
     .link,
     .link svg,
-    .lang__btn,
-    .dock,
-    .dock.is-shown {
+    .lang__btn {
         transition: none;
     }
 }
@@ -607,11 +573,6 @@ main:focus {
         font-size: 0.875rem;
     }
 
-    /* The hero and closing buttons are always within reach on larger screens */
-    .dock {
-        display: none;
-    }
-
     /* Label column + content column, like a magazine spread */
     .block {
         display: grid;
@@ -622,6 +583,13 @@ main:focus {
 
     .eyebrow {
         margin: 0;
+    }
+
+    .insta__grid {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin-top: 3rem;
     }
 
     .plate img {
@@ -644,8 +612,9 @@ main:focus {
         padding-bottom: 0;
     }
 
+    /* a row without an address keeps its link on the name's line */
     .place__address,
-    .place__soon {
+    .place__name + .link {
         margin-top: 0;
     }
 
@@ -667,14 +636,28 @@ main:focus {
 
     .footer__legal {
         justify-self: end;
+        text-align: right;
+    }
+
+    .footer__legal [data-i18n] {
+        display: inline-block;
     }
 }
 
-@media (min-width: 1200px) {
+/* From here the measure is narrower than the window, so content is centred (74rem = measure + 2 gutters) */
+@media (min-width: 74rem) {
     .topbar {
         padding-inline: calc((100% - var(--measure)) / 2) calc((100% - var(--measure)) / 2 - 0.75rem);
     }
 
+    .block,
+    .plate,
+    .footer {
+        margin-inline: auto;
+    }
+}
+
+@media (min-width: 1200px) {
     .hero__logo img {
         width: 19rem;
     }
@@ -688,8 +671,7 @@ main:focus {
         padding-block: 1.75rem;
     }
 
-    .place .link,
-    .place__soon {
+    .place .link {
         grid-column: 3;
         justify-self: end;
     }
@@ -697,20 +679,17 @@ main:focus {
     .place .link {
         margin-top: 0;
     }
-
-    .block,
-    .plate,
-    .closing,
-    .footer {
-        margin-inline: auto;
-    }
 }
 
 /* ---------- Short screens (phones held sideways) ---------- */
 
 @media (max-height: 520px) {
     .hero__logo img {
-        width: 9.5rem;
+        width: 13rem;
+    }
+
+    .hero .btn {
+        min-width: 13rem;
     }
 
     .hero__tagline {

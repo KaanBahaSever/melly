@@ -12,20 +12,19 @@
             skip: 'Skip to content',
             langLabel: 'Language',
             tagline: 'Good coffee, warmly served.',
-            cta: 'View Our Menu',
-            ctaShort: 'Menu',
+            follow: 'Follow Us',
+            followLabel: 'Follow us on Instagram: @mellycoffeeco',
+            instaText: 'Our latest news and moments are on Instagram.',
             aboutTitle: 'About',
-            aboutText: 'At Melly Coffee, every cup is made fresh by skilled baristas from carefully selected beans. We welcome you in a warm, easygoing atmosphere at our Suadiye and Cihangir shops — whether you’re starting the day with a great coffee or settling into a long conversation with friends. Coming soon to Ankara.',
+            aboutText: 'At Melly Coffee, every cup is made fresh by skilled baristas from carefully selected beans. We welcome you in a warm, easygoing atmosphere at our Suadiye, Cihangir and Ankara shops — whether you’re starting the day with a great coffee or settling into a long conversation with friends.',
             plateAlt: 'A quiet coffee table by a window, surrounded by plants',
             locationsTitle: 'Locations',
             directions: 'Get directions',
             directionsSuadiye: 'Get directions: Suadiye',
             directionsCihangir: 'Get directions: Cihangir',
-            soon: 'Coming soon',
+            directionsAnkara: 'Get directions: Ankara',
             hoursTitle: 'Opening Hours',
             everyDay: 'Every day',
-            menuLabel: 'Menu',
-            closing: 'Your coffee is ready.',
             rights: 'All rights reserved.'
         }
     };
@@ -88,9 +87,11 @@
         });
     });
 
+    // Crawlers report an English browser language; they should index the Turkish page that matches the Turkish <head>.
+    var isCrawler = /bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent);
     var initial = storedLanguage();
     if (initial !== 'tr' && initial !== 'en') {
-        initial = /^tr\b/i.test(navigator.language || 'tr') ? 'tr' : 'en';
+        initial = isCrawler || /^tr\b/i.test(navigator.language || 'tr') ? 'tr' : 'en';
     }
     if (initial === 'en') {
         setLanguage('en');
@@ -128,27 +129,4 @@
             revealObserver.observe(el);
         }
     });
-
-    // Floating menu button: shown once the hero button has scrolled away, hidden again from the closing button on.
-    var dock = document.getElementById('dock');
-    var pastHero = false;
-    var atEnd = false;
-
-    function updateDock() {
-        dock.classList.toggle('is-shown', pastHero && !atEnd);
-    }
-
-    dock.hidden = false;
-
-    new IntersectionObserver(function (entries) {
-        var entry = entries[entries.length - 1];
-        pastHero = !entry.isIntersecting && entry.boundingClientRect.top < 0;
-        updateDock();
-    }).observe(document.getElementById('hero-cta'));
-
-    new IntersectionObserver(function (entries) {
-        var entry = entries[entries.length - 1];
-        atEnd = entry.isIntersecting || entry.boundingClientRect.top < 0;
-        updateDock();
-    }).observe(document.getElementById('closing'));
 })();
