@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="100 1241 3737 1445" role="img" aria-labelledby="title">
+  <title id="title">Melly Coffee Co.</title>
+  <defs>
+    <path id="c" d="M0 -32.1 A43.25 43.25 0 1 0 0 32.1" fill="none" stroke-width="10.5"/>
+    <ellipse id="o" rx="42.25" ry="43.25" fill="none" stroke-width="10.5"/>
+    <path id="f" d="M0 0H59.5V10H11V43H51V53H11V93.5H0Z"/>
+    <path id="e" d="M0 0H60.5V10H11V43H53V53H11V83H60.5V93.5H0Z"/>
+  </defs>
+
+  <g fill="#21201E" stroke="#21201E">
+    <!-- Frame: open at the bottom for the tagline -->
+    <path id="frame" fill="none" stroke-width="8" stroke-linejoin="miter"
+          d="M1447 2588H156V1297H3781V2588H2496"/>
+
+    <!-- Wordmark -->
+    <g id="wordmark" stroke="none">
+      <path id="M"  d="M669 2245V1613H676L961 1927.5L1246 1613H1253V2245H1150V1860L964.5 2064H957.5L773 1860V2245Z"/>
+      <path id="E"  d="M1370 1630H1771V1721H1475V1904H1736V1995H1475V2154H1780V2245H1370Z"/>
+      <path id="L1" d="M1877 1630H1983V2154H2294V2245H1877Z"/>
+      <path id="L2" d="M2370 1630H2476V2154H2787V2245H2370Z"/>
+      <path id="Y"  d="M2716.5 1630H2833L2994 1923L3154 1630H3271L3047 2012V2245H2942V2012Z"/>
+    </g>
+
+    <!-- Tagline: COFFEE CO. -->
+    <g id="tagline">
+      <use href="#c" x="1669.4" y="2587.5"/>
+      <use href="#o" x="1728.5" y="2587.5"/>
+      <use href="#f" x="1791"   y="2541" stroke="none"/>
+      <use href="#f" x="1864"   y="2541" stroke="none"/>
+      <use href="#e" x="1939"   y="2541" stroke="none"/>
+      <use href="#e" x="2015"   y="2541" stroke="none"/>
+      <use href="#c" x="2197.4" y="2587.5"/>
+      <use href="#o" x="2257.5" y="2587.5"/>
+      <circle id="period" cx="2328.5" cy="2628" r="4.1" fill="none" stroke-width="1.8"/>
+    </g>
+  </g>
+</svg>
